@@ -1,0 +1,77 @@
+
+@media screen and (min-width: 52em) {
+	
+	a {
+		text-decoration: none;
+	}
+	
+	[role="navigation"],
+	[role="main"],
+	[role="complementary"] {	
+		display: block;	
+		position: relative;
+	}
+	
+	.container, .nav {
+		font-family: 'Source Sans Pro', sans-serif;
+		vertical-align: baseline;
+	}
+	
+	.container {
+		max-width: 62.5em;
+		margin: 0 auto;
+	}
+	
+	section[role="main"] {
+		padding: 3em 4% 8% 4%;
+		width: 70%;
+		float: right;
+	}
+	
+	section[role="complementary"] {
+		width: 18%;
+		margin-left: 0;
+		float: right;
+		padding: 3% 2% 3% 0;
+	}
+	
+	
+	/* Top Navigation */
+	[role="navigation"] {
+		clear: both;
+		left: 26%;
+		width: 70%;
+		position: absolute;
+		margin-right: 0;
+	}
+	
+	[role="navigation"] li {
+		float: left;
+	}
+	
+	.navlist li {
+		list-style-type: none;
+		text-transform: uppercase;
+		padding: 0 10px 0 0;
+	}
+	
+	.navlist a {
+		color: #000000;
+		border-bottom: solid 2px #D1D1D1;
+	}
+	
+	.navabout:hover {
+		border-bottom: solid 2px #900000;
+	}
+	
+	.navexperience:hover {
+		border-bottom: solid 2px #00DAFA;
+	}
+	
+	.navcontact:hover {
+		border-bottom: solid 2px #9BDA00;
+	}
+	
+	
+	/* End Top Navigation */
+}
