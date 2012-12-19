@@ -3,7 +3,7 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('network.views',
     # Examples:
     # url(r'^$', 'trilife.views.home', name='home'),
     # url(r'^trilife/', include('trilife.foo.urls')),
@@ -13,4 +13,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'index'),
 )
