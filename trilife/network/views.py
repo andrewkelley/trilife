@@ -24,10 +24,10 @@ def LoginRequest(request):
                 login(request, user)
                 return HttpResponseRedirect('/index/')
             else:
-                return render_to_response('trilife/index.html', {'form':form}, context_instance=RequestContext(request))
+                return render_to_response('index.html', {'form':form}, context_instance=RequestContext(request))
         else:
-            return render_to_response('trilife/index.html', {'form':form}, context_instance=RequestContext(request))
+            return render_to_response('index.html', {'form':form}, context_instance=RequestContext(request))
     else:
         form = LoginForm()
         context = {'form':form}
-        return render_to_response('trilife/index.html', {'form':form}, context, context_instance=RequestContext(request))
+        return render_to_response('index.html', {'form':form}, context_instance=RequestContext(request))
