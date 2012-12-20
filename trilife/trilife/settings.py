@@ -1,5 +1,9 @@
 # Django settings for trilife project.
 
+# Stripe Keys
+STRIPE_PUBLISHABLE = 'pk_test_jxxwWSFsUkW8oVBcTHxeGV9b'
+STRIPE_SECRET = 'sk_test_cFa3TOs21iCFrGQUt1MZI3ju'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

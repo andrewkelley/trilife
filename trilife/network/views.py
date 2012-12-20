@@ -6,10 +6,26 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from network.forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
+import stripe
 
 def index(request):
     member = Member.objects.all()
     return render_to_response('index.html', { member:'member' }, context_instance=RequestContext(request))
+
+def payment(request):
+    if request.method == 'POST':
+        stripe.api_key = settings.STRIPE_SECRET
+        token = request.POST['stripeToken']
+        charge = stripe.Charge.create(
+            amount=1000,
+            currency="usd",
+            card=token,
+            description="payinguser@example.com"
+        )
+        return HttpResponseRedirect('/index')
+    else:
+        member = Member.objects.all()
+        return render_to_response('payment.html', { member:'member' }, context_instance=RequestContext(request))
 
 def LoginRequest(request):
     if request.user.is_authenticated():

@@ -15,4 +15,5 @@ urlpatterns = patterns('network.views',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/', 'index'),
     url(r'^$', 'LoginRequest'),
+    url(r'^payment/', 'payment'),
 )
