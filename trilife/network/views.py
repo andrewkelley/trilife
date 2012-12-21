@@ -6,23 +6,38 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from network.forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
+import trilife.settings as settings
 import stripe
 
 def index(request):
     member = Member.objects.all()
     return render_to_response('index.html', { member:'member' }, context_instance=RequestContext(request))
 
+def received(request):
+    member = Member.objects.all()
+    return render_to_response('received.html', {member:'member'}, context_instance=RequestContext(request))
+
 def payment(request):
+    user = request.user
+    member = Member.objects.get(user=user)
     if request.method == 'POST':
         stripe.api_key = settings.STRIPE_SECRET
         token = request.POST['stripeToken']
+        customer = stripe.Customer.create(
+            card=token,
+            email=member.email
+        )
+
+        member.stripe_id = customer.id        
+        member.save()
+        
         charge = stripe.Charge.create(
             amount=1000,
             currency="usd",
-            card=token,
-            description="payinguser@example.com"
+            customer=customer.id
         )
-        return HttpResponseRedirect('/index')
+
+        return HttpResponseRedirect('/received')
     else:
         member = Member.objects.all()
         return render_to_response('payment.html', { member:'member' }, context_instance=RequestContext(request))

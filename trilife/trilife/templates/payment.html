@@ -57,6 +57,22 @@
 
     </style>
     
+    <script type="text/javascript">
+            function stripeResponseHandler(status, response) {
+                    if (response.error) {
+                            // show errors
+                            $(".payment-errors").html(response.error.message);
+                    } else {
+                            var form$ = $("#payment-form");
+
+                            var token = response['id'];
+
+                            form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+
+                            form$.get(0).submit();
+                    }
+            }
+      </script>
     {% endblock %}
 
 	{% block content %}
@@ -69,7 +85,8 @@
           <h1>Make a payment.</h1>
         </div>
         <p class="lead">T.R.I. Life accepts any major credit card. All payments are processed securely.</p>
-        <form action="/charge" method="post">
+        <form action="" method="post" id="payment-form">
+                {% csrf_token %}
                 <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-key="pk_test_jxxwWSFsUkW8oVBcTHxeGV9b"></script>
         </form>
       </div>

@@ -16,4 +16,5 @@ urlpatterns = patterns('network.views',
     url(r'^index/', 'index'),
     url(r'^$', 'LoginRequest'),
     url(r'^payment/', 'payment'),
+    url(r'^received/', 'received'),
 )
